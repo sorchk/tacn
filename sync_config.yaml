@@ -2,13 +2,13 @@
 
 # 基本配置
 upstream:
-  repository: "TauricResearch/TradingAgents"
-  url: "https://github.com/TauricResearch/TradingAgents.git"
+  repository: "hsliuping/TradingAgents-CN"
+  url: "https://github.com/hsliuping/TradingAgents-CN.git"
   branch: "main"
 
 origin:
-  repository: "hsliuping/TradingAgents-CN"
-  url: "https://github.com/hsliuping/TradingAgents-CN.git"
+  repository: "sorchk/tacn"
+  url: "https://github.com/sorchk/tacn.git"
   branch: "main"
 
 # 同步策略配置
@@ -33,9 +33,7 @@ sync_strategy:
     docs:
       strategy: "ours"
       files:
-        - "README.md"
-        - "docs/**"
-        - "*.md"
+        - "docker-build.sh"
     
     # 配置文件：手动处理
     config:
@@ -44,6 +42,7 @@ sync_strategy:
         - "config/**"
         - "*.yaml"
         - "*.json"
+        - "web/app.py"
         - "requirements.txt"
     
     # 核心代码：优先上游版本
@@ -64,15 +63,11 @@ sync_strategy:
 file_rules:
   # 保护的文件（不会被上游覆盖）
   protected_files:
-    - "README.md"
-    - "README-CN.md"
-    - "CONTRIBUTING.md"
-    - "CHANGELOG.md"
-    - "PROJECT_INFO.md"
-    - "docs/**"
     - "scripts/sync_upstream.py"
     - "sync_config.yaml"
     - ".github/workflows/upstream-sync-check.yml"
+    - "docker-build.sh"
+    - ".env"
   
   # 忽略的文件（不参与同步）
   ignored_files:
@@ -81,6 +76,7 @@ file_rules:
     - "*.log"
     - "__pycache__/**"
     - "*.pyc"
+    - ".env"
   
   # 需要特殊处理的文件
   special_handling:
@@ -100,13 +96,13 @@ notifications:
     labels:
       - "upstream-sync"
     assignees:
-      - "hsliuping"
+      - "sorchk"
   
   # 邮件通知（如果配置了）
   email:
     enabled: false
     recipients:
-      - "hsliup@163.com"
+      - "sorc@qq.com"
     
   # Webhook通知（如果需要）
   webhook:

@@ -450,7 +450,7 @@ def main():
 
     page = st.sidebar.selectbox(
         "切换功能模块",
-        ["📊 股票分析", "⚙️ 配置管理", "💾 缓存管理", "💰 Token统计", "📈 历史记录", "🔧 系统状态"],
+        ["📊 股票分析", "⚙️ 配置管理", "💾 缓存管理", "💾 数据库管理", "💰 Token统计", "📈 历史记录", "🔧 系统状态"],
         label_visibility="collapsed"
     )
 
@@ -472,6 +472,13 @@ def main():
             cache_main()
         except ImportError as e:
             st.error(f"缓存管理页面加载失败: {e}")
+        return
+    elif page == "💾 数据库管理":
+        try:
+            from modules.database_management import main as db_main
+            db_main()
+        except ImportError as e:
+            st.error(f"数据库页面加载失败: {e}")
         return
     elif page == "💰 Token统计":
         try:
